@@ -20,23 +20,29 @@ public class App {
 
         PrintWriter socketWriter = new PrintWriter(socket.getOutputStream());
 
-        new Thread(new ServerRunnable(socket)).start();
+        while (true) {
+            System.out.println("Введите логин: ");
+            String login = consoleReader.readLine();
 
+            System.out.println("Введите пароль: ");
+            String password = consoleReader.readLine();
 
+            socketWriter.println("!auth!" + login + ":" + password);
+            socketWriter.flush();
+            BufferedReader serverReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
-        System.out.println("Введите логин: ");
-        String login = consoleReader.readLine();
-
-        System.out.println("Введите пароль: ");
-        String password = consoleReader.readLine();
-
-        socketWriter.println("!auth!" + login + ":" + password);
-        socketWriter.flush();
+            String serverMessage = serverReader.readLine();
+            System.out.println(serverMessage);
+            if (serverMessage.equals("Вы успешно авторизовались")) {
+                break;
+            }
+        }
+       new Thread(new ServerRunnable(socket)).start();
 
         while (true) {
-        socketWriter.println(consoleReader.readLine());
-        socketWriter.flush();
-    }
+            socketWriter.println(consoleReader.readLine());
+            socketWriter.flush();
+        }
 //        Thread.sleep(5000);
 //        socketWriter.println("Privet");
 //        socketWriter.flush();
