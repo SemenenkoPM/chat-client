@@ -1,4 +1,4 @@
-package ru.itsjava;
+package ru.itsjava.services;
 
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;

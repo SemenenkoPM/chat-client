@@ -1,6 +1,7 @@
 package ru.itsjava;
 
 import lombok.SneakyThrows;
+import ru.itsjava.services.ClientImpl;
 
 public class App {
 
