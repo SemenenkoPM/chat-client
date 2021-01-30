@@ -20,7 +20,7 @@ public class App {
         PrintWriter socketWriter = new PrintWriter(socket.getOutputStream());
         while (true) {
 
-            System.out.println("Введите 1 для регистрации, введите 2 для авторизации");
+            System.out.println("Введите 1 для авторизации, введите 2 для регистрации");
             String numMenu = consoleReader.readLine();
             socketWriter.println(numMenu);
             socketWriter.flush();
